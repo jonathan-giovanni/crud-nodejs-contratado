@@ -10,4 +10,4 @@ router.get('/delete/:id', categoryController.delete);
 
 
 
-module.exports = router; 
+module.exports = router;

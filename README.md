@@ -2,7 +2,7 @@
 Esta es una aplicación basica que utiliza nodeJS del lado del servidor con conexión a datos utilizando MySQL.
 
 # Comandos utiles
-- Para añadir librerias : ``` npm install express mysql express-myconnection morga ejs ```
+- Para añadir librerias : ``` npm install express mysql express-myconnection morga ejs synchronize```
 - Para actualizar automaticamente el servidor: ``` npm install nodemon -D ```
 - Para iniciar el servidor utilizando nodemon: ``` npm run dev ```
 
