@@ -13,7 +13,7 @@ controller.list = (req,res) => {
             if(err){
               res.json(err);
             }else{
-              //res.json(category); retorna un json con los datos
+              //res.json(rows); // retorna un json con los datos
               res.render('category',{
                 edit_data:null,
                 data: rows
@@ -31,7 +31,7 @@ controller.save = (req, res) => {
     console.log("Existe");
     req.getConnection((err, connection) => {
       console.log(data);
-      connection.query('UPDATE '+table+' SET ? WHERE id = ?', [data, data.id], (err, rows) => {
+      connection.query(`UPDATE ${table} SET ? WHERE id = ?`, [data, data.id], (err, rows) => {
         res.redirect('/');
         if(err){
           console.log(err);
@@ -42,8 +42,7 @@ controller.save = (req, res) => {
     console.log("No existe");
     data.id = null;
     req.getConnection((err, connection) => {
-      connection.query('INSERT INTO '+table+' SET ?', data, (err, result) => {
-        console.log(result);
+      connection.query(`INSERT INTO ${table} SET ?`, data, (err, result) => {
         res.redirect('/');
       })
     });
@@ -56,12 +55,12 @@ controller.edit = (req, res) => {
   const { id } = req.params;
   let item,items;  // solo es visible en este ambito
   req.getConnection((err, conn) => {
-    //espera que termine esta consulta para seguir
-    let synQuery = new SyncQuery(conn);
-    synQuery.query( 'SELECT * FROM '+table+' WHERE id = ?', [id] )
+    //consulta utilizando promise para realizar proceso sincrono
+    let syncQuery = new SyncQuery(conn);
+    syncQuery.query( `SELECT * FROM ${table} WHERE id = ?`, [id] )
     .then( rows => {
         item = rows;
-        return synQuery.query( 'SELECT * FROM '+table);
+        return syncQuery.query( 'SELECT * FROM '+table);
     })
     .then( rows => {
         items = rows;
@@ -78,7 +77,7 @@ controller.edit = (req, res) => {
 controller.delete = (req, res) => {
   const { id } = req.params;
   req.getConnection((err, connection) => {
-    connection.query('DELETE FROM '+table+' WHERE id = ?', [id], (err, rows) => {
+    connection.query(`DELETE FROM ${table} WHERE id = ?`, [id], (err, rows) => {
       res.redirect('/');
     });
   });

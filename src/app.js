@@ -7,7 +7,9 @@ const myConnection = require('express-myconnection');
 const app     = express();
 
 //importando rutas
-const routeCategory = require('./routes/category');
+const routeIndex       = require('./routes/index');
+const routeCategory    = require('./routes/category');
+const routeSubCategory = require('./routes/subcategory');
 
 //configuraciones de express
 app.set('port', process.env.PORT || 3000 );
@@ -29,7 +31,11 @@ app.use(myConnection(mysql,{
 app.use(express.urlencoded({extended: false}));
 
 //rutas
-app.use('/',routeCategory); //cuando vaya a la raiz del proyecto
+
+app.use('/',routeIndex); //cuando vaya a la raiz del proyecto
+app.use('/category',routeCategory); //cuando vaya a la raiz del proyecto
+app.use('/subcategory',routeSubCategory); //cuando vaya a la raiz del proyecto
+
 
 //archivos estaticos
 app.use(express.static(path.join(__dirname,'public')));

@@ -1,0 +1,53 @@
+<% include partials/_header %>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-7">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <td>Id</td>
+            <td>SubCategoria</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (data) { %>
+            <% for(var i = 0; i < data.length; i++) { %>
+              <tr>
+                <td><%= data[i].id %></td>
+                <td><%= data[i].subcategory_name %></td>
+                <td>
+                  <a href="/subcategory/edit/<%= data[i].id %>" class="btn btn-info">Editar</a>
+                  <a href="/subcategory/delete/<%= data[i].id %>" class="btn btn-danger" onclick="return confirm('Desea eliminar este elemento?');" >Eliminar</a>
+                </td>
+              </tr>
+            <% } %>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-5">
+      <div class="card-body">
+        <form action="/subcategory/saveOrUpdate" method="POST">
+          <div class="form-group">
+            <% if(edit_data){ %>
+              <input type="text" value="<%=edit_data.id%>" name="id" class="form-control" readonly>
+            <% } %>
+            </div>
+            <div class="form-group">
+            <input type="text"
+                   <% if(edit_data){%>
+                       value="<%= edit_data.subcategory_name %>"
+                   <% } %>
+                   name="subcategory_name" placeholder="Subcategoria" class="form-control" autofocus>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            Guardar subcategoria
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% include partials/_footer %>
