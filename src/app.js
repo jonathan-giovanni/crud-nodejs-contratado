@@ -23,7 +23,8 @@ app.use(myConnection(mysql,{
     user:'root',
     password: 'admin',
     port:3306,
-    database:'contratado'
+    database:'contratado',
+    multipleStatements: true
 },'single'));
 
 

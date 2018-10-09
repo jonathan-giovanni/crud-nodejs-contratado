@@ -1,6 +1,13 @@
 
 const SyncQuery  = require('../utils/SyncQuery.js');
 
+
+async function asyncForEach(array, callback) {
+for (let index = 0; index < array.length; index++) {
+  await callback(array[index], index, array)
+}
+}
+
 module.exports = class CRUD{
   //se crea en el respectivo controlador
   constructor(table,view){
@@ -17,6 +24,11 @@ module.exports = class CRUD{
   setReqRes(req,res){
     this.req    = req;
     this.res    = res;
+  }
+
+  multipleQuerys(querys,args){
+    this.read = querys;
+    this.args = args;
   }
   //para guardar o actualizar los datos
   crud_createOrUpdate(){
@@ -61,7 +73,7 @@ module.exports = class CRUD{
         if(err){
           this.error('Consulta','Conexión a la base de datos',err);
         }else{
-          conn.query(this.read,(err,rows)=>{
+          conn.query(this.read,this.args,(err,rows)=>{
               if(err){
                 this.error('Consulta','Sentencia SQL de '+this.table,err);
               }else{
@@ -75,7 +87,6 @@ module.exports = class CRUD{
         }
     });
   }
-
   //para eliminar datos
   crud_delete(){
     const { id } = this.req.params;
@@ -132,4 +143,7 @@ module.exports = class CRUD{
       error:err
     });
   }
+
+
+
 }
