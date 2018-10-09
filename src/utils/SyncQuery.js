@@ -1,4 +1,3 @@
-
 module.exports = class SyncQuery {
   constructor(conn){
     this.connection = conn;

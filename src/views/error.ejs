@@ -1,0 +1,8 @@
+<% include partials/_header %>
+
+<% if(error){ %>
+  <h1>Error en operación de : <%=error_op%></h1>
+  <p>Se ha detectado un error en la <%=error_type%></p>
+  <p>Detalles : <%=error.code%> </p>
+<% } %>
+<% include partials/_footer %>
