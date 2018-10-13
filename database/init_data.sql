@@ -34,14 +34,3 @@ insert into cSubCategory value (2,' Adminstrativo Bancario',1);
 insert into cSubCategory value (3,' Gestión de personal',1);
 insert into cSubCategory value (4,' Analista de datos',1);
 insert into cSubCategory value (5,' Secretario/a',1);
-
-
-
-
-select * from cCountry c, cState s where country_name="El Salvador" and c.id = s.id_country ;
-
-select * from cCity where id_state = 1089;
-
-
-select subcat.id , subcat.subcategory_name , subcat.id_category,cat.category_name from cSubCategory subcat, cCategory cat where cat.id=subcat.id_category;
-

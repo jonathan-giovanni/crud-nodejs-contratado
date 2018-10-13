@@ -4,25 +4,25 @@ use contratado;
 
 -- estado de un comentario
 create table cCommentState(
-	id             	int(11) primary key auto_increment,
-	state        	varchar(250) -- mal servicio , servicio regular , buen servicio , excelente servicio
+	id						int(11) primary key auto_increment,
+	state         varchar(250) -- mal servicio , servicio regular , buen servicio , excelente servicio
 );
 
 -- estado de un acuerdo
 create table cAgreeState(
-	id             	int(11) primary key auto_increment,
-	state        	varchar(250) -- rechazado , pendiente , aceptado
+	id						int(11) primary key auto_increment,
+	state					varchar(250) -- rechazado , pendiente , aceptado
 );
 
 -- categoria de un trabajo
 create table cCategory(
-	id             	int(11) primary key auto_increment,
-	category_name varchar(200)
+	id						int(11) primary key auto_increment,
+	category_name	varchar(200)
 );
 
 -- subcategoria de un trabajo
 create table cSubCategory(
-	id             	int(11) primary key auto_increment,
+	id						int(11) primary key auto_increment,
 	subcategory_name varchar(200),
 	id_category int(11),
 	constraint fk_id_category foreign key (id_category) references cCategory(id) on delete cascade
