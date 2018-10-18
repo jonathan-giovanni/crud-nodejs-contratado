@@ -1,11 +1,11 @@
 
 const SyncQuery  = require('../utils/SyncQuery.js');
 
-
+//foreach asincrono
 async function asyncForEach(array, callback) {
-for (let index = 0; index < array.length; index++) {
-  await callback(array[index], index, array)
-}
+  for (let index = 0; index < array.length; index++) {
+    await callback(array[index], index, array)
+  }
 }
 
 module.exports = class CRUD{
@@ -26,13 +26,28 @@ module.exports = class CRUD{
     this.res    = res;
   }
 
-  multipleQuerys(querys,args){
+  setNullValues(values){
+    this.values = values;
+  }
+
+  setQuerys(querys,args){
     this.read = querys;
     this.args = args;
   }
   //para guardar o actualizar los datos
   crud_createOrUpdate(){
-    const data = this.req.body;
+    let data = this.req.body;
+    //recorrer el arreglo con los valores para definirlos nulos
+    if(this.values){
+      for (let i in data) {
+        console.log(i);
+        if (data[i]=='' & this.values.includes(i)) {
+          data[i] = null;
+          console.log('--------------------entre');
+        }
+      }
+    }
+
     if(data.id){
       this.req.getConnection((err, conn) => {
         if(err){
@@ -53,6 +68,7 @@ module.exports = class CRUD{
         if(err){
           this.error('Inserción','Conexión a la base de datos',err);
         }else{
+          console.log(data);
           conn.query(this.create, data, (err, result) => {
             if(err){
               this.error('Inserción','Sentencia SQL de '+this.table,err);

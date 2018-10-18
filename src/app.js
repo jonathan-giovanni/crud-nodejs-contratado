@@ -10,6 +10,7 @@ const app     = express();
 const routeIndex       = require('./routes/index');
 const routeCategory    = require('./routes/category');
 const routeSubCategory = require('./routes/subcategory');
+const routeUser     = require('./routes/user');
 
 //configuraciones de express
 app.set('port', process.env.PORT || 3000 );
@@ -25,7 +26,7 @@ app.use(myConnection(mysql,{
     port:3306,
     database:'contratado',
     multipleStatements: true
-},'single'));
+},'request'));
 
 
 //decodificar datos
@@ -36,6 +37,7 @@ app.use(express.urlencoded({extended: false}));
 app.use('/',routeIndex); //cuando vaya a la raiz del proyecto
 app.use('/category',routeCategory); //cuando vaya a la raiz del proyecto
 app.use('/subcategory',routeSubCategory); //cuando vaya a la raiz del proyecto
+app.use('/user',routeUser); //cuando vaya a la raiz del proyecto
 
 
 //archivos estaticos

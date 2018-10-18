@@ -1,0 +1,190 @@
+<% include partials/_header %>
+
+
+<div class="card-body">
+<form action="/user/saveOrUpdate" method="POST">
+  <div class="row">
+    <% if(edit_data){ %>
+      <div class="col-md-10 form-group">
+      <input type="text" value="<%=edit_data.id%>" name="id" class="form-control" readonly>
+      </div>
+    <% } %>
+    <div class="col-md-5 form-group">
+      <label for="title">Ingresa los nombres:</label>
+      <input class="form-control" type="text"
+             <% if(edit_data){%>
+                value="<%= edit_data.first_name %>"
+             <% } %>
+             name="first_name" placeholder="Ej: Juan Alberto" class="form-control" autofocus required>
+    </div>
+    <div class="col-md-5 form-group">
+      <label for="title">Ingresa los apellidos:</label>
+      <input class="form-control" type="text"
+             <% if(edit_data){%>
+                 value="<%= edit_data.last_name %>"
+             <% } %>
+             name="last_name" placeholder="Ej: Perez Torres">
+    </div>
+    <div class="col-md-5 form-group">
+      <label for="title">Ingresa el número de identificación:</label>
+      <input class="form-control" type="text"
+             <% if(edit_data){%>
+                 value="<%= edit_data.id_number %>"
+             <% } %>
+             name="id_number" placeholder="Ej: 07343411-1">
+    </div>
+    <div class="col-md-5 form-group">
+      <label for="title">Ingresa el número de celular:</label>
+      <input class="form-control" type="text"
+             <% if(edit_data){%>
+                 value="<%= edit_data.phone %>"
+             <% } %>
+             name="phone" placeholder="Ej: +50377546767">
+    </div>
+    <div class="col-md-5 form-group">
+      <label for="title">Ingresa el correo electronico:</label>
+      <input class="form-control" type="text"
+             <% if(edit_data){%>
+                 value="<%= edit_data.email %>"
+             <% } %>
+             name="email" placeholder="Ej: juan@correo.com">
+    </div>
+    <div class="col-md-5 form-group">
+      <label for="title">Ingresa la fecha de nacimiento:</label>
+      <input class="form-control" type="text"
+             <% if(edit_data){%>
+                 value="<%= edit_data.birthday %>"
+             <% } %>
+             name="birthday" placeholder="Formato: YYYY-MM-DD">
+    </div>
+    <div class="col-md-5 form-group">
+      <label for="title">Código de País:</label>
+      <input class="form-control" type="text"
+             <% if(edit_data){%>
+                 value="<%= edit_data.country_code %>"
+             <% } %>
+             name="country_code" placeholder="Ej: SV">
+    </div>
+    <div class="col-md-5 form-group">
+      <label for="title">Nombre del País:</label>
+      <input class="form-control" type="text"
+             <% if(edit_data){%>
+                 value="<%= edit_data.country_name %>"
+             <% } %>
+             name="country_name" placeholder="Ej: El Salvador">
+    </div>
+    <div class="col-md-5 form-group">
+      <label for="title">Nombre del departamento:</label>
+      <input class="form-control" type="text"
+             <% if(edit_data){%>
+                 value="<%= edit_data.country_state %>"
+             <% } %>
+             name="country_state" placeholder="Ej: Sonsonate">
+    </div>
+    <div class="col-md-5 form-group">
+      <label for="title">Nombre de la ciudad:</label>
+      <input class="form-control" type="text"
+             <% if(edit_data){%>
+                 value="<%= edit_data.country_city %>"
+             <% } %>
+             name="country_city" placeholder="Ej: Acajutla">
+    </div>
+    <div class="col-md-5 form-group">
+      <label for="title">Latitud:</label>
+      <input class="form-control" type="text"
+             <% if(edit_data){%>
+                 value="<%= edit_data.latitude %>"
+             <% } %>
+             name="latitude" placeholder="Latitud" required>
+    </div>
+    <div class="col-md-5 form-group">
+      <label for="title">Longitud:</label>
+      <input class="form-control" type="text"
+             <% if(edit_data){%>
+                 value="<%= edit_data.longitude %>"
+             <% } %>
+             name="longitude" placeholder="Longitud" required>
+    </div>
+    <div class="col-md-5 form-group">
+      <label for="title">Información del usuario:</label>
+      <input class="form-control" type="text"
+             <% if(edit_data){%>
+                 value="<%= edit_data.user_info %>"
+             <% } %>
+             name="user_info" placeholder="Descripción">
+    </div>
+    <div class="col-md-5 form-group">
+      <label for="title">¿Se anuncia?:</label>
+      <select name="is_an_advertiser" class="form-control" style="width:350px">
+        <option value="1">Si</option>
+        <option value="0">No</option>
+      </select>
+    </div>
+    <div class="col-md-5 form-group">
+      <label for="title">Foto de perfil:</label>
+      <input class="form-control" type="text"
+             <% if(edit_data){%>
+                 value="<%= edit_data.picture_path %>"
+             <% } %>
+             name="picture_path" placeholder="Ruta a foto de perfil">
+    </div>
+    <div class="col-md-5 form-group">
+      <label for="title">Foto de documento:</label>
+      <input class="form-control" type="text"
+             <% if(edit_data){%>
+                 value="<%= edit_data.document_path %>"
+             <% } %>
+             name="document_path" placeholder="Ruta a foto de documento">
+    </div>
+    <div class="col-md-5 form-group">
+      <button type="submit" class="btn btn-primary">
+        Guardar usuario
+      </button>
+    </div>
+  </div>
+</form>
+</div>
+
+  <div class="row">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <td>Id</td>
+            <td>Primer nombre</td>
+            <td>DUI</td>
+            <td>Telefono</td>
+            <td>Pais</td>
+            <td>Departamento</td>
+            <td>Ciudad</td>
+            <td>Latitud</td>
+            <td>Longitud</td>
+            <td>¿Se anuncia?</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (data) { %>
+            <% for(var i = 0; i < data.length; i++) { %>
+              <tr>
+                <td><%= data[i].id %></td>
+                <td><%= data[i].first_name %></td>
+                <td><%= data[i].id_number %></td>
+                <td><%= data[i].phone %></td>
+                <td><%= data[i].country_name %></td>
+                <td><%= data[i].country_state %></td>
+                <td><%= data[i].country_city %></td>
+                <td><%= data[i].latitude %></td>
+                <td><%= data[i].longitude %></td>
+                <td><%= data[i].is_an_advertiser %></td>
+                <td>
+                  <a href="/user/edit/<%= data[i].id %>" class="btn btn-info">Editar</a>
+                  <a href="/user/delete/<%= data[i].id %>" class="btn btn-danger" onclick="return confirm('Desea eliminar este elemento?');" >Eliminar</a>
+                </td>
+              </tr>
+            <% } %>
+          <% } %>
+        </tbody>
+      </table>
+  </div>
+
+
+<% include partials/_footer %>

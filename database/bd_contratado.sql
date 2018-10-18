@@ -28,6 +28,7 @@ create table cSubCategory(
 	constraint fk_id_category foreign key (id_category) references cCategory(id) on delete cascade
 );
 
+
 -- usuario
 create table cUser(
 	id 				int(11) primary key auto_increment,
@@ -36,7 +37,7 @@ create table cUser(
 	id_number 	varchar(250),
 	phone			varchar(200),
 	email 			varchar(250),
-    birthday 		date,
+    birthday 		date null default null,
 	country_code  	varchar(250),  -- Ejemplo SV
 	country_name 	varchar(250),  -- Ejemplo El Salvador
 	country_state  	varchar(250),  -- Ejemplo Sonsonate

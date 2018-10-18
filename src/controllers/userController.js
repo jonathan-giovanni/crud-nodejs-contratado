@@ -2,13 +2,13 @@ const controller = {};
 
 
 const CRUD       = require('../utils/CRUD.js');
-const table      = 'cSubCategory';
-const view       = 'subcategory';
+const table      = 'cUser';
+const view       = 'user';
 
 var crud = new CRUD(table,view);
+crud.setQuerys('select u.id,u.first_name,u.id_number,u.phone,u.country_name,u.country_state,u.latitude,u.longitude,u.is_an_advertiser from cUser u');
 
-
-crud.setQuerys('SELECT * FROM cCategory;select subcat.id , subcat.subcategory_name , subcat.id_category,cat.category_name from cSubCategory subcat, cCategory cat where cat.id=subcat.id_category');
+crud.setNullValues(['birthday']);
 
 // muestra la lista de elementos
 controller.list = (req, res) => {

@@ -29,8 +29,11 @@ insert into cCategory value (14,'Oficios');
 insert into cCategory value (15,'Proteción y seguridad');
 insert into cCategory value (16,'Sanidad');
 
-insert into cSubCategory value (1,' Adminstrativo Comercial',1);
 insert into cSubCategory value (2,' Adminstrativo Bancario',1);
 insert into cSubCategory value (3,' Gestión de personal',1);
 insert into cSubCategory value (4,' Analista de datos',1);
 insert into cSubCategory value (5,' Secretario/a',1);
+
+desc  cCategory;
+
+desc cUser;
